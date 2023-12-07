@@ -110,7 +110,18 @@ namespace TanksMP
             //                      Encryptor.Decrypt(PlayerPrefs.GetString(PrefsKeys.activeTank)));
 
             loadingWindow.SetActive(true);
+            //NetworkManagerCustom.StartMatch((NetworkMode)PlayerPrefs.GetInt(PrefsKeys.networkMode));
             NetworkManagerCustom.StartMatch((NetworkMode)PlayerPrefs.GetInt(PrefsKeys.networkMode));
+            StartCoroutine(HandleTimeout());
+        }
+        public void PlayOffline()
+        {
+            //UnityAnalyticsManager.MainSceneClosed(shopOpened, settingsOpened, musicToggle.isOn,
+            //                      Encryptor.Decrypt(PlayerPrefs.GetString(PrefsKeys.activeTank)));
+
+            loadingWindow.SetActive(true);
+            //NetworkManagerCustom.StartMatch((NetworkMode)PlayerPrefs.GetInt(PrefsKeys.networkMode));
+            NetworkManagerCustom.StartMatch((NetworkMode.Offline));
             StartCoroutine(HandleTimeout());
         }
 
