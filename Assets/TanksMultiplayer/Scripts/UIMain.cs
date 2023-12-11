@@ -120,8 +120,10 @@ namespace TanksMP
             //                      Encryptor.Decrypt(PlayerPrefs.GetString(PrefsKeys.activeTank)));
 
             loadingWindow.SetActive(true);
+            PlayerPrefs.SetInt(PrefsKeys.networkMode, 2);
+            networkDrop.value = PlayerPrefs.GetInt(PrefsKeys.networkMode);
             //NetworkManagerCustom.StartMatch((NetworkMode)PlayerPrefs.GetInt(PrefsKeys.networkMode));
-            NetworkManagerCustom.StartMatch((NetworkMode.Offline));
+            NetworkManagerCustom.StartMatch((NetworkMode)PlayerPrefs.GetInt(PrefsKeys.networkMode));
             StartCoroutine(HandleTimeout());
         }
 
