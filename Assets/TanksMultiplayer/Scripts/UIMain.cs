@@ -37,7 +37,6 @@ namespace TanksMP
         /// <summary>
         /// Settings: dropdown selection for network mode.
         /// </summary>
-        public Dropdown networkDrop;
 
         /// <summary>
         /// Dropdown selection for preferred game mode.
@@ -84,7 +83,6 @@ namespace TanksMP
 
             //read the selections and set them in the corresponding UI elements
             nameField.text = PlayerPrefs.GetString(PrefsKeys.playerName);
-            networkDrop.value = PlayerPrefs.GetInt(PrefsKeys.networkMode);
             gameModeDrop.value = PlayerPrefs.GetInt(PrefsKeys.gameMode);
             serverField.text = PlayerPrefs.GetString(PrefsKeys.serverAddress);
             musicToggle.isOn = bool.Parse(PlayerPrefs.GetString(PrefsKeys.playMusic));
@@ -110,6 +108,7 @@ namespace TanksMP
             //                      Encryptor.Decrypt(PlayerPrefs.GetString(PrefsKeys.activeTank)));
 
             loadingWindow.SetActive(true);
+            PlayerPrefs.SetInt(PrefsKeys.networkMode, 0);
             //NetworkManagerCustom.StartMatch((NetworkMode)PlayerPrefs.GetInt(PrefsKeys.networkMode));
             NetworkManagerCustom.StartMatch((NetworkMode)PlayerPrefs.GetInt(PrefsKeys.networkMode));
             StartCoroutine(HandleTimeout());
@@ -120,8 +119,9 @@ namespace TanksMP
             //                      Encryptor.Decrypt(PlayerPrefs.GetString(PrefsKeys.activeTank)));
 
             loadingWindow.SetActive(true);
+            PlayerPrefs.SetInt(PrefsKeys.networkMode, 2);
             //NetworkManagerCustom.StartMatch((NetworkMode)PlayerPrefs.GetInt(PrefsKeys.networkMode));
-            NetworkManagerCustom.StartMatch((NetworkMode.Offline));
+            NetworkManagerCustom.StartMatch((NetworkMode)PlayerPrefs.GetInt(PrefsKeys.networkMode));
             StartCoroutine(HandleTimeout());
         }
 
@@ -232,7 +232,6 @@ namespace TanksMP
         public void CloseSettings()
         {
             PlayerPrefs.SetString(PrefsKeys.playerName, nameField.text);
-            PlayerPrefs.SetInt(PrefsKeys.networkMode, networkDrop.value);
             PlayerPrefs.SetString(PrefsKeys.serverAddress, serverField.text);
             PlayerPrefs.SetString(PrefsKeys.playMusic, musicToggle.isOn.ToString());
             PlayerPrefs.SetFloat(PrefsKeys.appVolume, volumeSlider.value);
