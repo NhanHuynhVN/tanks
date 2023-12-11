@@ -35,12 +35,24 @@ namespace TanksMP
         /// <summary>
         /// Delay between shots.
         /// </summary>
-        public float fireRate = 0.75f;
+        public static float fireRate = 0.75f;
+        [Cheat]
+        private static void fspeed(float s)
+        {
+            fireRate = s;
+            CheatConsole.Log("Changing fire rate to " + s);
+        }
 
         /// <summary>
         /// Movement speed in all directions.
         /// </summary>
-        public float moveSpeed = 8f;
+        public static float moveSpeed = 8f;
+        [Cheat]
+        private static void speed(int s)
+        {
+            moveSpeed = s;
+            CheatConsole.Log("Changing speed to " + s);
+        }
 
         /// <summary>
         /// UI Slider visualizing health value.
@@ -321,7 +333,12 @@ namespace TanksMP
             if (Time.time > nextFire)
             {
                 //set next shot timestamp
-                nextFire = Time.time + fireRate;
+                PlayerBot bot = GetView().GetComponent<PlayerBot>();
+                if (bot != null)
+                {
+                    nextFire = Time.time + 0.75f;
+                }
+                else nextFire = Time.time + fireRate;
                 
                 //send current client position and turret rotation along to sync the shot position
                 //also we are sending it as a short array (only x,z - skip y) to save additional bandwidth
@@ -400,6 +417,13 @@ namespace TanksMP
         /// Server only: calculate damage to be taken by the Player,
 		/// triggers score increase and respawn workflow on death.
         /// </summary>
+        public void SetHealth(int health)
+        {
+            GetView().SetHealth(health);
+        }
+        public void God(){
+            GetView().SetShield(99999);
+        }
         public void TakeDamage(Bullet bullet)
         {
             //store network variables temporary
