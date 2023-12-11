@@ -27,6 +27,19 @@ namespace TanksMP
         [HideInInspector]
         public Player localPlayer;
 
+        [Cheat]
+        private static void health(int h)
+        {
+            instance.localPlayer.SetHealth(h);
+            CheatConsole.Log("Changing health to " + h);
+        }
+        [Cheat]
+        private static void god()
+        {
+            instance.localPlayer.God();
+            CheatConsole.Log("You are god");
+        }
+
         /// <summary>
         /// Active game mode played in the current scene.
         /// </summary>
