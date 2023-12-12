@@ -43,7 +43,11 @@ namespace TanksMP
             {
                 //randomly choose bot from array of bot prefabs
                 //spawn bot across the simulated private network
-                int randIndex = Random.Range(0, prefabs.Length);
+                //int randIndex = Random.Range(0, prefabs.Length);
+                int randIndex;
+                if (i < 3) randIndex = 0;
+                else if (i < 7) randIndex = 1;
+                else randIndex = 2;
                 GameObject obj = PhotonNetwork.Instantiate(prefabs[randIndex].name, Vector3.zero, Quaternion.identity, 0);
 
                 //let the local host determine the team assignment

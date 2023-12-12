@@ -863,7 +863,7 @@ MonoBehaviour:
   shield: 0
   ammo: 0
   currentBullet: 0
-  range: 6
+  range: 3
 --- !u!195 &195000012828890094
 NavMeshAgent:
   m_ObjectHideFlags: 0

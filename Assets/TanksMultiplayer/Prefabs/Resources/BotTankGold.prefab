@@ -996,7 +996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 114000012074050858}
-  maxHealth: 10
+  maxHealth: 20
   turretRotation: 0
   healthSlider: {fileID: 114000014083876352}
   shieldSlider: {fileID: 114000010269705198}

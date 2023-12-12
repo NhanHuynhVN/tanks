@@ -1427,7 +1427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 114000012191074864}
-  maxHealth: 10
+  maxHealth: 15
   turretRotation: 0
   healthSlider: {fileID: 114000010781945690}
   shieldSlider: {fileID: 114000013554628402}
@@ -1455,7 +1455,7 @@ MonoBehaviour:
   shield: 0
   ammo: 0
   currentBullet: 0
-  range: 6
+  range: 4
 --- !u!195 &195000010656594416
 NavMeshAgent:
   m_ObjectHideFlags: 0
